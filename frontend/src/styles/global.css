@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #e0e5ec;
+  --surface: #e0e5ec;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --accent: #6c63ff;
+  --accent-light: #a89cff;
+  --accent-dark: #4a43cc;
+  --success: #48bb78;
+  --danger: #fc8181;
+  --warning: #f6ad55;
+
+  --neu-flat: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  --neu-pressed: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  --neu-raised: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  --neu-convex: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light),
+    inset 1px 1px 2px var(--shadow-light), inset -1px -1px 2px var(--shadow-dark);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Neumorphic Components ─────────────────────────────────────── */
+
+.neu-card {
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--neu-raised);
+  padding: 2rem;
+}
+
+.neu-input {
+  background: var(--surface);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--neu-pressed);
+  padding: 0.85rem 1.1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  width: 100%;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.neu-input:focus {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light),
+    0 0 0 2px var(--accent-light);
+}
+
+.neu-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.neu-btn {
+  background: var(--surface);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--neu-flat);
+  padding: 0.85rem 1.5rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.neu-btn:hover {
+  box-shadow: var(--neu-raised);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.neu-btn:active {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
+}
+
+.neu-btn-primary {
+  background: linear-gradient(145deg, var(--accent), var(--accent-dark));
+  color: white;
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+}
+
+.neu-btn-primary:hover {
+  color: white;
+  box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+}
+
+.neu-btn-icon {
+  background: var(--surface);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--neu-flat);
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.neu-btn-icon:hover {
+  box-shadow: var(--neu-raised);
+  color: var(--accent);
+}
+
+.neu-btn-icon:active {
+  box-shadow: var(--neu-pressed);
+}
+
+.neu-checkbox {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--neu-pressed);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.neu-checkbox:checked {
+  background: var(--accent);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2), inset -1px -1px 2px rgba(255,255,255,0.1);
+}
+
+.neu-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────── */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--shadow-dark);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Alert ────────────────────────────────────────────────────────── */
+.alert {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.alert-error {
+  background: #fff0f0;
+  color: #c53030;
+  box-shadow: inset 3px 3px 6px #f0c0c0, inset -3px -3px 6px #ffffff;
+}
+
+.alert-success {
+  background: #f0fff4;
+  color: #276749;
+  box-shadow: inset 3px 3px 6px #c0e8cc, inset -3px -3px 6px #ffffff;
+}
+
+/* ── Fade in ──────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.4s ease forwards;
+}
